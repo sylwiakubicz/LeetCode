@@ -44,3 +44,39 @@ var calculate = function(a,b,operation) {
     }
     return result
 }
+
+// ładniejszy zapis tego samego
+
+var evalRPN = function(tokens) {
+
+    let numbers = []
+
+    for (let char of tokens) {
+
+        if (char === "+") {
+            a = numbers.pop()
+            b = numbers.pop()
+            numbers.push(a + b)
+        }
+        else if (char === "-") {
+            a = numbers.pop()
+            b = numbers.pop()
+            numbers.push(b - a)
+        }
+        else if (char === "*") {
+            a = numbers.pop()
+            b = numbers.pop()
+            numbers.push(b * a)
+        }
+        else if (char === "/") {
+            a = numbers.pop()
+            b = numbers.pop()
+            result = (b / a) < 0 ? Math.ceil(b / a) : Math.floor(b / a)
+            numbers.push(result)
+        }
+        else {
+            numbers.push(parseInt(char))
+        }
+    }
+    return numbers.pop()
+};
