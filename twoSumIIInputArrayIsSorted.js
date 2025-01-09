@@ -1,4 +1,22 @@
-// Z wykorzysataniem two pinters ale tutaj mamy praktycznie o(n2) bo za każdym razem musimy resetować j
+// two pointers -- GENIUS !!! 
+var twoSum = function(numbers, target) {
+    let l = 0
+    let r = numbers.length - 1
+
+    while (l < r) {
+        sum = numbers[l] + numbers[r]
+
+        if (sum === target) return [l + 1, r + 1]
+        else if (sum < target) {
+            l++
+        }
+        else {
+            r--
+        }
+    }
+};
+
+// bruce force ale torchę zoptymalizowany, mamy praktycznie o(n2) bo za każdym razem musimy resetować j ale ucinamy iteracje jeśli nei prowaadzi dalej do niczego
 var twoSum = function(numbers, target) {
 
     for (let i = 0; i < numbers.length; i++) {
