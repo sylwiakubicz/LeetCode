@@ -26,3 +26,26 @@ var trap = function(height) {
 };
 
 // O(1) memory
+var trap = function(height) {
+    let result = 0
+
+    let l = 0
+    let r = height.length - 1
+
+    let rightMax = height[r]
+    let leftMax = height[l]
+
+    while (l < r) {
+        if (leftMax < rightMax) {
+            l++
+            leftMax = Math.max(leftMax, height[l])
+            result += leftMax - height[l]
+        } else {
+            r--
+            rightMax = Math.max(rightMax, height[r])
+            result += rightMax - height[r]
+        }
+    }
+
+    return result
+};
