@@ -1,3 +1,22 @@
+// wystarczy środek porównać z skrajnymi a nie skrajne ze sobą
+var findMin = function(nums) {
+    let l = 0;
+    let r = nums.length - 1;
+
+    while (l < r) { 
+        let m = Math.floor((l + r) / 2);
+
+        if (nums[m] < nums[r]) {
+            r = m; 
+        } else {
+            l = m + 1; 
+        }
+    }
+
+    return nums[l]; 
+};
+
+// tak nie róbmy ale też działa - za bardzo sobie skomplikowałam XDD
 var findMin = function(nums) {
     let l = 0
     let r = nums.length - 1
