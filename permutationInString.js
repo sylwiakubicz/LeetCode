@@ -4,6 +4,7 @@ var checkInclusion = function(s1, s2) {
             return false;
         }
 
+        // możemy wypełnić od razu obie tablice do przechowywania częstotliwości występowania poszczególnyc liter
         let s1Count = new Array(26).fill(0);
         let s2Count = new Array(26).fill(0);
         for (let i = 0; i < s1.length; i++) {
@@ -11,6 +12,7 @@ var checkInclusion = function(s1, s2) {
             s2Count[s2.charCodeAt(i) - 97]++;
         }
 
+        // sprawdzamy ile liter ma taką samą częstotliwość
         let matches = 0;
         for (let i = 0; i < 26; i++) {
             if (s1Count[i] === s2Count[i]) {
@@ -18,12 +20,16 @@ var checkInclusion = function(s1, s2) {
             }
         }
 
+        // przesuwamy okno
         let l = 0;
         for (let r = s1.length; r < s2.length; r++) {
             if (matches === 26) {
                 return true;
             }
 
+        //  dodając do tablicy nowy znak i updatując na jego podstawie matches
+                // jeśli po tej opercji częstotliwości są te same to zwiększamy matches
+                // jeśli zmiana spowodowała że dodaliśmy litere, której nie ma w s1 (s1 musiałoby mieć o 1 więcej żeby było git) to pomniejszamy matches
             let index = s2.charCodeAt(r) - 97;
             s2Count[index]++;
             if (s1Count[index] === s2Count[index]) {
@@ -32,6 +38,9 @@ var checkInclusion = function(s1, s2) {
                 matches--;
             }
 
+        // ujmując pierwszy znak o którego się pozbyliśmy i updatując na jego podstawie mactches
+                // jeśli po tej opercji częstotliwości są te same to zwiększamy matches
+                // jeśli zmiana spowodowała że pozbyliśmy się dobre litery (s1 musiałoby mieć o 1 mniej żeby było git) to pomniejszamy matches
             index = s2.charCodeAt(l) - 97;
             s2Count[index]--;
             if (s1Count[index] === s2Count[index]) {
@@ -41,6 +50,9 @@ var checkInclusion = function(s1, s2) {
             }
             l++;
         }
+        
+        // po ostatniej iteracji nie jest sprawdzany wwarunek z matches === 26 więc nei możemy zwracać bezpośrednio false 
+        // temu zwracamy boolen z wyrażenia matches === 26
         return matches === 26;
 };
 
