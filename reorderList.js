@@ -1,6 +1,7 @@
 // najszybsze rozwiazanie 
 var reorderList = function(head) {
     let slow = head
+    // dla krótszych list lepiej, ponieważ dodanie fast = head.next wymaga dodatkowej operacji przed pętlą ktrej tutaj nie ma
     let fast = head
     while (fast && fast.next) {
         slow = slow.next
