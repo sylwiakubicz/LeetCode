@@ -1,3 +1,35 @@
+// najszybsze rozwiazanie 
+var reorderList = function(head) {
+    let slow = head
+    let fast = head
+    while (fast && fast.next) {
+        slow = slow.next
+        fast = fast.next.next
+    }
+
+    let current = slow.next
+    slow.next = null
+    prev = null
+    while (current) {
+        next = current.next
+        current.next = prev
+        prev = current
+        current = next
+    }
+    
+    let second = prev
+    let first = head
+    while (second) {
+        temp1 = first.next
+        temp2 = second.next
+
+        first.next = second
+        second.next = temp1
+
+        first = temp1
+        second = temp2
+    }
+};
 
 // rozwiązanie z dodatkowymi funckjami
 var reorderList = function(head) {
