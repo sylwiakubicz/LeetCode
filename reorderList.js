@@ -17,16 +17,41 @@ var reorderList = function(head) {
         prev = current
         current = next
     }
-    
+
+    //first  1 -> 2
+    // second 4 -> 3
     let second = prev
     let first = head
     while (second) {
+        // przetrzymujemy odniesienia do następnych nodów w listach
+        // temp1 -> 2
+        // temp2 -> 3
+
+        // druga iteracja
+        // temp1 -> null
+        //  temp2 -> null
         temp1 = first.next
         temp2 = second.next
 
+        // 1 -> 4 
+        // 4 -> 2
+        // = 
+        // 1 -> 4 -> 2
+
+        // druga iteracja
+        // 2 -> 3
+        // 3 -> null
+        // =
+        // 1 -> 4 -> 2 -> 3 -> null
         first.next = second
         second.next = temp1
 
+        // przesuwamy się na kolejne nody wcześniej zapisane w temp variables
+        // first = 2
+        // second = 3
+
+        // first = null
+        // second = null
         first = temp1
         second = temp2
     }
