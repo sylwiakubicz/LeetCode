@@ -31,6 +31,33 @@ var addTwoNumbers = function(l1, l2) {
     return dummy.next
 };
 
+// rozwiązanie w jednej pętli z uproszczeniem logiki do sumowania i przepisywania reszty
+var addTwoNumbers = function(l1, l2) {
+    let dummy = {val: 0, next: null} 
+    let node = dummy
+
+    let oneLeft = 0
+    while (l1 || l2) {
+        i = l1 ? l1.val : 0
+        j = l2 ? l2.val : 0
+        
+        sum = oneLeft + i + j
+        val = sum % 10
+        oneLeft = Math.floor(sum / 10)
+        
+        node.next = new ListNode(val)
+        node = node.next
+        l1 = l1 ? l1.next : null
+        l2 = l2 ? l2.next : null
+    }
+
+    if (oneLeft) {
+        node.next = new ListNode(1)
+    }
+
+    return dummy.next
+};
+
 // rozwiązanie rozdielające
 var addTwoNumbers = function(l1, l2) {
     let dummy = {val: 0, next: null} 
