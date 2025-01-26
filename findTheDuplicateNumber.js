@@ -1,4 +1,7 @@
 // Floyd's algorym 
+// kluczem do tego zadania jest zobaczenie, że to tak naprawdę zadanie na linked listy z szukaniem cyklu
+// tylko szukanie cyklu troche bardziej rozszerzone
+// wyjaśnienie szczególowe w notatkach  na onenote
 var findDuplicate = function(nums) {
     let slow = 0
     let fast = 0
