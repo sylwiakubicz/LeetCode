@@ -12,7 +12,9 @@ var mergeKLists = function(lists) {
         // lists[(1 -> 2 -> null), (3 -> 5 -> null)]
         // lists[(1 -> 2 -> 3 -> 5 -> null)]
         for (let i = 0; i < lists.length; i += 2) {
-            mergedLists.push(merge(lists[i], lists[i + 1]))
+            l1 = lists[i]
+            l2 = (i + 1) < lists.length ? lists[i + 1] : null
+            mergedLists.push(merge(l1, l2))
         }
         lists = mergedLists
     }
