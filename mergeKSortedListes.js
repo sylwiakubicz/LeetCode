@@ -1,5 +1,5 @@
 // łączymy po dwie i wynik zapisujemy w nowej tablicy, którą następnie przyposujemy do początkowej
-// zawiera ona wtedy dwa razy mniej list
+// zawiera ona co iteracje pętli while dwa razy mniej list
 // łączymy po dwie dopóki nie zostanie nam tylko jedna
 // O(n * log k)
 var mergeKLists = function(lists) {
