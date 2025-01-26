@@ -39,21 +39,28 @@ var removeNthFromEnd = function(head, n) {
 
 // technika z dwoma pointerami
 var removeNthFromEnd = function(head, n) {
+    // dodaj dummy node na początek listy
     let dummy = {val: 0, next: head}
+    // inicjalizacja left i right pointer
     let left = dummy
     let right = head
     
-   
+   // przeuswamy right o size okna czyli tutaj o n
     while (n > 0 && right) {
         right = right.next
         n--
     }
 
+    // przeusawmy oba wskaźniki dopóki rigt nie bezie wskazywał na null
     while (right) {
         left = left.next
         right = right.next
     }
 
+    // left wskazuje na elmenet przed tym co ma być usunięty
+    // left.next wskazuje aktualnie na element, który chcemy usunąć
+    // zmieniając left.next na left.next.next przenosimy pointer o jeden dalej pomijajac ten node, który ma byc usunięty
+    // przykład w notatce w onenode na stronie Linked Lists
     left.next = left.next.next
     return dummy.next
 };
