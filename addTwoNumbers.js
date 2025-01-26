@@ -1,3 +1,37 @@
+// rozwiązanie w jednej pętli
+var addTwoNumbers = function(l1, l2) {
+    let dummy = {val: 0, next: null} 
+    let node = dummy
+
+    let oneLeft = false
+    // iterujemy dopóki jedna albo druga lista ma jakąs cyfrę
+    while (l1 || l2) {
+        // jeśli l1 labo l2 jest null to będzimey dodawać 0
+        i = l1 ? l1.val : 0
+        j = l2 ? l2.val : 0
+        sum = oneLeft ? (1 + i + j) : (i + j)
+        if (sum <= 9) {
+            val = sum
+            oneLeft = false
+        } else {
+            val = sum - 10
+            oneLeft = true
+        }
+        node.next = new ListNode(val)
+        node = node.next
+        // jesli list się skończyła to ustaw na null
+        l1 = l1 ? l1.next : null
+        l2 = l2 ? l2.next : null
+    }
+
+    if (oneLeft) {
+        node.next = new ListNode(1)
+    }
+
+    return dummy.next
+};
+
+// rozwiązanie rozdielające
 var addTwoNumbers = function(l1, l2) {
     let dummy = {val: 0, next: null} 
     let node = dummy
