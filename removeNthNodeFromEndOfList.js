@@ -36,3 +36,24 @@ var removeNthFromEnd = function(head, n) {
 
     return dummy.next
 };
+
+// technika z dwoma pointerami
+var removeNthFromEnd = function(head, n) {
+    let dummy = {val: 0, next: head}
+    let left = dummy
+    let right = head
+    
+   
+    while (n > 0 && right) {
+        right = right.next
+        n--
+    }
+
+    while (right) {
+        left = left.next
+        right = right.next
+    }
+
+    left.next = left.next.next
+    return dummy.next
+};
