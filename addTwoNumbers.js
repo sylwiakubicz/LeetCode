@@ -58,7 +58,9 @@ var addTwoNumbers = function(l1, l2) {
     return dummy.next
 };
 
-// rozwiązanie rozdielające
+// rozwiązanie rozdielające pętle na 
+// 1) elementy są dostępne i 1 1 i w 2 liście
+// 2) elementy są dostępne tylko w jednej z nich
 var addTwoNumbers = function(l1, l2) {
     let dummy = {val: 0, next: null} 
     let node = dummy
