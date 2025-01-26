@@ -4,9 +4,7 @@ var addTwoNumbers = function(l1, l2) {
 
     let oneLeft = false
     while (l1 && l2) {
-        i = l1.val
-        j = l2.val
-        sum = oneLeft ? (1 + i + j) : (i + j)
+        sum = oneLeft ? (1 + l1.val + l2.val) : (l1.val + l2.val)
         if (sum <= 9) {
             val = sum
             oneLeft = false
