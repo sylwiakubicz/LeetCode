@@ -6,29 +6,27 @@ var reverseKGroup = function(head, k) {
     let groupPrev = dummy
 
     while (true) {
-        // tworzymy nową ggrupę
+        // tworzymy nową grupę
         kth = getKth(groupPrev, k)
+        // jeśli nie ma wystarczającej liczby nodów żeby ją utworyzć to przrywamy pętle - doszliśmy do końca listy
         if (!kth) break
 
-        // potrzebujemy też pointer na node tuż za naszą grupą, żeby połączyć z poprzednią
-        groupNext = kth.next
+        groupNext = kth.next // Zapamiętujemy wskaźnik na kolejny element (poza grupą)
 
         // reverse group
-        let prev = kth.next
-        let current = groupPrev.next
+        let prev = kth.next // Ustawiamy prev na element po grupie, czyli `4`
+        let current = groupPrev.next // Curr wskazuje na pierwszy element grupy, czyli `1`
 
         while (current != groupNext) {
-            tmp = current.next
-            current.next = prev
-            prev = current
-            current = tmp
+            tmp = current.next // Zapamiętujemy następny węzeł, żeby nie zgubić listy
+            current.next = prev // Odwracamy wskaźnik
+            prev = current // Przesuwamy prev na aktualny węzeł
+            current = tmp // Przesuwamy curr na następny węzeł
         }
 
-        // first node in group
-        temp = groupPrev.next
-        // kth is the last node in group
-        groupPrev.next = kth
-        groupPrev = temp
+        temp = groupPrev.next // Temp to pierwszy węzeł grupy przed odwróceniem (czyli `1`)
+        groupPrev.next = kth // Łączymy poprzednią grupę z nowym headem (czyli `3`)
+        groupPrev = temp // Przesuwamy prev_group na koniec odwróconej grupy (czyli `1`)
     }
 
     return dummy.next
