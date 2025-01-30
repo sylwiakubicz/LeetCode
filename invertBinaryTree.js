@@ -1,3 +1,6 @@
+// pre-order DFS 
+// zamieniamy left z right i następnie przetwarzamy left dopóki nie bezie null i później right 
+
 var invertTree = function(root) {
     if (root === null) return null
 
