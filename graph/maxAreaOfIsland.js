@@ -37,6 +37,8 @@ var maxAreaOfIsland = function(grid) {
         }
     }
 
+    return maxArea
+};
 
 // DFS
 
@@ -71,5 +73,3 @@ var maxAreaOfIsland = function(grid) {
     return maxArea
 };
 
-    return maxArea
-};
