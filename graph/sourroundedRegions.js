@@ -47,3 +47,57 @@ var solve = function(board) {
         }
     }
 };
+
+// przetrzymywanie cordsów których nie zmieniamy w secie
+/**
+ * @param {character[][]} board
+ * @return {void} Do not return anything, modify board in-place instead.
+ */
+var solve = function(board) {
+    const ROWS = board.length
+    const COLS = board[0].length
+    const DIRECTIONS = [[1,0], [-1,0], [0,1], [0,-1]]
+
+    let notToClose = new Set()
+
+    // dodanie wszytskich połączonych "O" 
+    const dfs = (r, c) => {
+        if (r < 0 || c < 0 || r >= ROWS || c >= COLS || notToClose.has(`${r},${c}`) || board[r][c] === "X") {
+            return
+        }
+
+        notToClose.add(`${r},${c}`)
+        for (let [dr,dc] of DIRECTIONS) {
+            let row = r + dr
+            let col = c + dc
+            dfs(row, col)
+        }
+    }
+
+    // zebranie wszytskich "O" z krawędzi
+    for (let r = 0; r < ROWS; r++) {
+        if (board[r][0] === "O" && !notToClose.has(`${r},0`)) {
+            dfs(r, 0)
+        } 
+        if (board[r][COLS - 1] === "O" && !notToClose.has(`${r},${COLS - 1}`)) {
+            dfs(r, COLS - 1)
+        }
+    }
+    for (let c = 0; c < COLS; c++) {
+        if (board[ROWS - 1][c] === "O" && !notToClose.has(`${ROWS - 1},${c}`)) {
+            dfs(ROWS - 1, c)
+        }
+        if (board[0][c] === "O" && !notToClose.has(`0,${c}`)) {
+            dfs(0, c)
+        }
+    }
+
+    for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+            if (!notToClose.has(`${r},${c}`)) {
+                board[r][c] = "X"
+            }
+        }
+    }
+
+};
