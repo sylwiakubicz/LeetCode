@@ -43,6 +43,10 @@ var orangesRotting = function(grid) {
 
 
 // zaznaczanie również 2 jako odwiedzonej (poprzednie tlyko 1 zamienialiśmy na 2 )
+// Mniej operacji dodawania do kolejki (q.push())
+// W wersji bez zmiany na 3, pomarańcze, które były już zgniłe (2), są pozostawione bez zmian, więc algorytm nie ma jednoznacznego sposobu, aby sprawdzić, czy już zostały odwiedzone w poprzednich iteracjach BFS.
+// W wersji ze zmianą na 3, po dodaniu pomarańczy do kolejki, ich wartość jest zmieniana natychmiast, co zapobiega ich ponownemu dodaniu i sprawdzaniu w kolejnych krokach.
+
 var orangesRotting = function(grid) {
     const DIRECTIONS = [[1, 0], [-1, 0], [0, 1], [0, -1]]
     const ROWS = grid.length
@@ -72,12 +76,7 @@ var orangesRotting = function(grid) {
                 let r = row + dr
                 let c = col + dc
 
-      time++
-    }
-
-
-    return fresh === 0 ? time : -1;
-};                if (r >= 0 && c >= 0 && r < ROWS && c < COLS && grid[r][c] === 1) {
+                if (r >= 0 && c >= 0 && r < ROWS && c < COLS && grid[r][c] === 1) {
                     fresh--
                     grid[r][c] = 3
                     q.push([r,c])
@@ -85,4 +84,10 @@ var orangesRotting = function(grid) {
             }
         }
 
+        time++
+    }
+
+
+    return fresh === 0 ? time : -1;
+};
   
