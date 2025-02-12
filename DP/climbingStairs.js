@@ -2,6 +2,8 @@
  * @param {number} n
  * @return {number}
  */
+
+// najpierw musiszmy wiedzieć ile opcji było, żeby przejść mniejszą ilość stopni
 var climbStairs = function(n) {
     let result = new Array(n).fill(0)
 
