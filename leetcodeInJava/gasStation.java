@@ -17,7 +17,25 @@ class Solution {
 
         return res;
     }
-}s
+}
+
+
+// najlepsze ale nie mój kod
+class Solution {
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        int currentGain = 0, totalGain = 0, anwser = 0;
+        for(int i = 0; i < gas.length; i++) {
+            currentGain += gas[i] - cost[i];
+            totalGain += gas[i] - cost[i];
+            if(currentGain < 0){
+                anwser = i + 1;
+                currentGain = 0;
+            }
+        }
+        return totalGain >= 0 ? anwser : -1;
+    }
+}
+
 
 // działa ale wolne, brute force
 class Solution {
