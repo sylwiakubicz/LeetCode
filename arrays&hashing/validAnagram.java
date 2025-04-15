@@ -18,3 +18,21 @@ class Solution {
         return true;
     }
 }
+
+
+
+
+
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        if (s.length() != t.length()) return false;
+        
+        char[] sList = s.toCharArray();
+        char[] tList = t.toCharArray();
+
+        Arrays.sort(sList);
+        Arrays.sort(tList);
+
+        return Arrays.equals(sList, tList);
+    }
+}
